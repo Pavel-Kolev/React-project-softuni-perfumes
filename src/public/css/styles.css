@@ -1,0 +1,53 @@
+
+body{
+    padding:0;
+   margin:0;
+    min-width:800px; 
+    width: 100%;
+}
+header{
+    background-color: #333;
+     
+    align-items: center;
+    
+    padding:1rem;
+    width:100% ;
+    border:solid;
+}
+nav{
+    width: 95%;
+    padding-right: 5%;
+    
+}
+ul{
+    flex-wrap: wrap;
+    list-style: none;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin:0;
+    padding:0;
+}
+li{
+    
+ 
+font-size: 30px;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+ .logo{
+    display:inline-block;
+    padding: 1rem;
+    height:100px;
+    width: 140px;
+    align-self: flex-start;
+    margin-right:auto;
+ }
+ .List-Of-Items{
+display: flex;
+gap: 2rem;
+justify-content: center;
+ }
