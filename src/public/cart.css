@@ -1,0 +1,15 @@
+.Cart-Table img{
+   max-inline-size: 40%;
+}
+.Cart-Table{
+    max-width: 60%;
+}
+.cart-section{
+    display:flex;
+  flex-direction: row;
+    justify-content: center;
+}
+.buttons-group{
+    display:flex;
+    
+}
