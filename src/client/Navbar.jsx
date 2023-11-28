@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactDOM } from "react";
 import "../public/header.css"
-
+import {Link} from "react-router-dom"
 function Navbar(){
 
     return(
@@ -11,11 +11,11 @@ function Navbar(){
            
         <p className="branding">Pavels parfumes</p>
        
-        <li><a href="/">Home</a></li>
-        <li><a href="/Catalog">Catalog</a></li>
-        <li><a href="/register">Register</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/Cart">Cart</a></li>
+        <li><Link to= "/">Home </Link></li>
+        <li><Link to="/Catalog">Catalog</Link></li>
+        <li><Link to="/register">Register</Link></li>
+        <li><Link to="/login">Login </Link></li>
+        <li><Link to="/Cart">Cart </Link></li>
          
         
       </ul>
