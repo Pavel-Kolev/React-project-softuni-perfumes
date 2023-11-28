@@ -1,49 +1,60 @@
-import { useState } from 'react'
- import { useEffect } from 'react'
-import "../public/styles.css"
-import Navbar from './Navbar'
-import Itemcard from './Itemcards'
-import Footer from './Footer'
-import axios from 'axios'
-import ProductSection from './ProductSection'
-  
+import { useState } from "react";
+import { useEffect } from "react";
+import "../public/styles.css";
+import Navbar from "./Navbar";
+import * as userService from "./services/userService";
+import ProductSection from "./ProductSection";
+import { CartContext } from "./CartContext";
+import { Route, Routes } from "react-router-dom";
+import Register from "./Register";
+import Login from "./Login";
+import Cart from "./cart";
+import Home from "./Home";
+import { ContextProvider } from "./CartContext";
+import * as perfumeService from "./services/perfumeService";
+ 
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [err, setErr] = useState({});
  
- 
-  
- 
-    return (
-      <>
-       <Navbar>
-  
-  
-       </Navbar>
-     <div className="space"></div>
-   <ProductSection></ProductSection>
-  
-      
-  
-      
-      
-       
-       
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam maiores blanditiis libero dolorem rerum temporibus, atque necessitatibus impedit a nisi odit autem. Numquam ullam inventore iste at quaerat incidunt dolores?Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae optio autem sint amet? Vitae reprehenderit quae, aliquam facere rem minus assumenda! Ipsa ad recusandae rerum sint at quasi quia nesciunt. </p>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam maiores blanditiis libero dolorem rerum temporibus, atque necessitatibus impedit a nisi odit autem. Numquam ullam inventore iste at quaerat incidunt dolores?Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae optio autem sint amet? Vitae reprehenderit quae, aliquam facere rem minus assumenda! Ipsa ad recusandae rerum sint at quasi quia nesciunt. </p>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam maiores blanditiis libero dolorem rerum temporibus, atque necessitatibus impedit a nisi odit autem. Numquam ullam inventore iste at quaerat incidunt dolores?Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae optio autem sint amet? Vitae reprehenderit quae, aliquam facere rem minus assumenda! Ipsa ad recusandae rerum sint at quasi quia nesciunt. </p>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam maiores blanditiis libero dolorem rerum temporibus, atque necessitatibus impedit a nisi odit autem. Numquam ullam inventore iste at quaerat incidunt dolores?Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae optio autem sint amet? Vitae reprehenderit quae, aliquam facere rem minus assumenda! Ipsa ad recusandae rerum sint at quasi quia nesciunt. </p>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam maiores blanditiis libero dolorem rerum temporibus, atque necessitatibus impedit a nisi odit autem. Numquam ullam inventore iste at quaerat incidunt dolores?Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae optio autem sint amet? Vitae reprehenderit quae, aliquam facere rem minus assumenda! Ipsa ad recusandae rerum sint at quasi quia nesciunt. </p>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam maiores blanditiis libero dolorem rerum temporibus, atque necessitatibus impedit a nisi odit autem. Numquam ullam inventore iste at quaerat incidunt dolores?Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae optio autem sint amet? Vitae reprehenderit quae, aliquam facere rem minus assumenda! Ipsa ad recusandae rerum sint at quasi quia nesciunt. </p>
+  const registerSubmitHandler = async (values) => {
      
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam maiores blanditiis libero dolorem rerum temporibus, atque necessitatibus impedit a nisi odit autem. Numquam ullam inventore iste at quaerat incidunt dolores?Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae optio autem sint amet? Vitae reprehenderit quae, aliquam facere rem minus assumenda! Ipsa ad recusandae rerum sint at quasi quia nesciunt. </p>
+      const result = await userService.register(values)
+      if(result.errorMessages){
+        setErr(result.errorMessages)
+      }
+     
+    else{
+
+    }
+     
+   
 
      
-     <Footer></Footer>
-    </>
+     
     
-    )
+  };
   
-  
+ 
+  return (
+    <ContextProvider>
+      <>
+        <Navbar />
+        <div className="space"></div>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/Catalog" element={<ProductSection />}></Route>
+
+          <Route
+            path="/register"
+            element={<Register registerSubmitHandler={registerSubmitHandler}   arr={err}  />}
+          ></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/cart" element={<Cart />}></Route>
+        </Routes>
+      </>
+    </ContextProvider>
+  );
 }
 
-export default App
+export default App;
