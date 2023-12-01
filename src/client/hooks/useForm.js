@@ -1,7 +1,7 @@
 import { useState } from "react";
 import validateRegCredentials from "../utils/validateUsers";
 import * as userService from "../services/userService"
-export   function useForm (registerSubmitHandler,initialValues,startingErrors,type){
+export   function useForm (SubmitHandler,initialValues,startingErrors,type){
     const [values,setValues]= useState(initialValues)
     const[errors,setErrors]=useState(startingErrors)
     const onChange=(e)=>{
@@ -23,10 +23,10 @@ export   function useForm (registerSubmitHandler,initialValues,startingErrors,ty
             
             
             
-             registerSubmitHandler(values)
+             SubmitHandler(values)
         }
         else{
-            console.log(errors)
+           
             return(errors)
         }
     }
@@ -41,15 +41,13 @@ else if(type==="login"){
     const onSubmit=(e)=>{
       
         e.preventDefault()
-         validateRegCredentials(values)===undefined?setErrors([]):setErrors(validateRegCredentials(values))
-        if(errors.length===0){
+          
+         
              
-            registerSubmitHandler(values)
-        }
-        else{
-            console.log(errors)
-            return(errors)
-        }
+          SubmitHandler(values)
+       
+        
+          
     }
     return{
         values,
