@@ -66,7 +66,7 @@ try{
     const token = await userService.login(email,username, password);
     
    
-    res.json({token});
+    res.json({token,email,username});
   
 }   
     catch(err){
