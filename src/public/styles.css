@@ -109,3 +109,8 @@ font-family: 'Roboto', sans-serif;
    min-width: fit-content;
    height: 25px;
  }
+ .toast-container{
+   position:fixed;
+   bottom: 0 ;
+   right: 0 ;
+ }
