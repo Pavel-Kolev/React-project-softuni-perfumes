@@ -7,7 +7,8 @@ const parfumeService=require("./services/parfumeServices")
 const app=express();
 const URL="mongodb://127.0.0.1:27017/parfumes"
 const errorHandlerMiddleware = require("./middlewares/errorMessage")
-
+const cookieParser=require("cookie-parser")
+ 
 async function dbConnect(){
     try{
         await mongoose.connect(URL)
@@ -18,10 +19,15 @@ async function dbConnect(){
    }
 }
 dbConnect()
+
 app.use(errorHandlerMiddleware)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-app.use(cors())
+app.use(cors({
+	origin: 'http://localhost:5173',
+	credentials: true
+}))
+app.use(cookieParser())
 
 
 
@@ -37,6 +43,7 @@ app.post("/register",async (req,res)=>{
  const {email,username,password}=req.body
  try{  
   const user=await userService.register(email,username,password)
+ 
   res.json(user)
 } 
  catch (err) {
@@ -48,13 +55,34 @@ app.post("/register",async (req,res)=>{
     res.status(400).json({errorMessages})
    
   }
-
+ 
  res.end()
 
 
 })
-
-
+app.post("/login", async (req, res) => {
+    const { email,username, password } = req.body;
+try{
+    const token = await userService.login(email,username, password);
+    
+   
+    res.json({token});
+  
+}   
+    catch(err){
+        const{message}=err
+   
+    const errorMessages=message.split(",")
+    
+    res.status(400).json({errorMessages})
+   
+    }
+  
+    
+   
+ res.end()
+  });
+ 
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
