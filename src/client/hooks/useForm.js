@@ -60,5 +60,25 @@ else if(type==="login"){
 
 
 }
+else if(type==="createoffer"){
+    const onSubmit=(e)=>{
+      
+        e.preventDefault()
+          
+         
+             
+          SubmitHandler(values)
+       
+        
+          
+    }
+    return{
+        values,
+        onChange,
+        onSubmit,
+        errors
+    }
+
+}
    
 }
