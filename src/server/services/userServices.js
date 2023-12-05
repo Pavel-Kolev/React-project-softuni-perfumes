@@ -10,7 +10,18 @@ exports.register= async (email,username,password)=>{
         throw new Error("The Email is already in use")
      }
 else{
-   return User.create({email,username,password})
+    const user= await User.create({email,username,password})
+    const payload={
+        _id:user._id,
+        email:user.email,
+        username:user.username,
+    }
+   const token= await jwt.sign(payload,"atanas",{expiresIn:"3d"})
+  
+   return token
+ 
+    
+  
 }
        
     
