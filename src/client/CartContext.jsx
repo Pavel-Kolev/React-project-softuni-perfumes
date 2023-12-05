@@ -1,6 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useEffect } from "react";
 import * as perfumeService from "./services/perfumeService";
+import AuthContext from "./contexts/AuthContext";
  
 const CartContext = createContext({
   items: [],
@@ -9,6 +10,7 @@ const CartContext = createContext({
   removeOneFromCart: () => {},
   deleteFromCart: () => {},
   getTotalCost: () => {},
+  getProductDetails:()=>{}
 });
 
   
@@ -18,18 +20,22 @@ const CartContext = createContext({
 export function ContextProvider(props) {
   const [cartProducts, setCartProducts] = useState();
   const [loading, setLoading] = useState(true);
+const token=localStorage.getItem("token")
+  
   useEffect(() => {
    
-    perfumeService.getAllParfumes().then(productwithquant=>(productwithquant.map((cartProducts)=> ({...cartProducts , quantity:0})   ))).then(productswithquant=>setCartProducts(productswithquant))
-   setLoading(false)
+      perfumeService.getAllParfumes(token).then(productwithquant=>(productwithquant.map((cartProducts)=> ({...cartProducts , quantity:0})   ))).then(productswithquant=>setCartProducts(productswithquant))
+      setLoading(false)
+      
+ 
    
-  }, [])
+  },[])
  
 
 
   
    
-  function getProductQuantity(id) {
+  function getProductQuantity(_id) {
     const quantity = cartProducts.find(
       (product) => (product._id = id)
     )?.quantity;
@@ -48,33 +54,43 @@ export function ContextProvider(props) {
       );
     
   }
-  function deleteFromCart(id) {
-    setCartProducts((cartProducts) =>
-      cartProducts.filter((currentProduct) => {
-        return currentProduct.id != id;
-      })
-    );
+  function deleteFromCart(_id) {
+     
+    setCartProducts(cartProducts.map((product) =>
+          product._id === _id
+            ? { ...product, quantity: 0 }
+            : product
+        )
+    )
+    ;
   }
-  function removeOneFromCart(id) {
+  function removeOneFromCart(_id) {
     if (quantity === 1) {
-      deleteFromCart(id);
+      deleteFromCart(_id);
     } else {
       setCartProducts(
         cartProducts.map((product) =>
-          product._id === id
+          product._id === _id
             ? { ...product, quantity: product.quantity - 1 }
             : product
         )
       );
     }
   }
-  
+  function getProductDetails(_id) {
+    const quantity = cartProducts.find(
+      (product) => (product._id = _id)
+    )?.quantity;
+
+    return product;
+  }
   const contextValue = {
     items: cartProducts,
     getProductQuantity,
     addOneToCart,
     removeOneFromCart,
     deleteFromCart,
+    getProductDetails,
      loading:loading,
     
   };
