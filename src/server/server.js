@@ -7,7 +7,10 @@ const parfumeService=require("./services/parfumeServices")
 const app=express();
 const URL="mongodb://127.0.0.1:27017/parfumes"
 const errorHandlerMiddleware = require("./middlewares/errorMessage")
-const cookieParser=require("cookie-parser")
+const routes = require("./router")
+const cookieParser=require("cookie-parser");
+
+
  
 async function dbConnect(){
     try{
@@ -31,58 +34,11 @@ app.use(cookieParser())
 
 
 
-app.get("/",async (req,res)=>{
-    
-    const parfumeData =await parfumeService.getAll()
-    res.json(parfumeData)
+
+
  
 
-
-}) 
-app.post("/register",async (req,res)=>{
- const {email,username,password}=req.body
- try{  
-  const user=await userService.register(email,username,password)
- 
-  res.json(user)
-} 
- catch (err) {
-    
-    const{message}=err
-   
-    const errorMessages=message.split(",")
-    
-    res.status(400).json({errorMessages})
-   
-  }
- 
- res.end()
-
-
-})
-app.post("/login", async (req, res) => {
-    const { email,username, password } = req.body;
-try{
-    const token = await userService.login(email,username, password);
-    
-   
-    res.json({token,email,username});
-  
-}   
-    catch(err){
-        const{message}=err
-   
-    const errorMessages=message.split(",")
-    
-    res.status(400).json({errorMessages})
-   
-    }
-  
-    
-   
- res.end()
-  });
  
 
-
+app.use(routes)
 app.listen(port, () => console.log(`Listening on port ${port}`))
