@@ -3,9 +3,10 @@ import { ReactDOM } from "react";
 import { CartContext } from "./CartContext";
 import { useRef } from "react";
 import "../public/styles.css"
+ import {Link} from "react-router-dom"
+ import Button from 'react-bootstrap/Button';
  
-import "../public/styles.css"
-
+ import Card from 'react-bootstrap/Card';
 
 function Itemcard({_id,brand,model,disc,price,img}){
     const inputEl = useRef(null);
@@ -21,18 +22,23 @@ function Itemcard({_id,brand,model,disc,price,img}){
     return( <>
        
 <div className="Item" >
-<a ></a>
-<p>{_id}</p>
- <img className="product-photo" src={img}/>
- <div className="discription">
- <p className="product-text">{ brand}</p>
- <p className="product-text">{ disc}</p>
- </div>
- <p className="product-text">{  model}</p>
- <p className="product-text">{ price}$</p>
- <div>
-      <button onClick={addToCartHandler}>Add</button>
-     </div>
+<Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={img} />
+      <Card.Body>
+        <Card.Title>{brand}</Card.Title>
+        <Card.Text>
+        {disc}
+        </Card.Text>
+        <Card.Text>
+        {model}
+        </Card.Text>
+        <Card.Text>
+        {price}$
+        </Card.Text>
+        <Link to={`/parfume/${_id}`}> <Button variant="dark">Details</Button></Link>
+      </Card.Body>
+    </Card>
+ 
  </div>
      
      
