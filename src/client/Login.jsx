@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useForm } from "./hooks/useForm"
 import * as userService from "./services/userService"
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast';
-
-export default function Login({loginSubmitHandler,errs}){
+import AuthContext from "./contexts/AuthContext";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+export default function Login({errs}){
+    const{loginSubmitHandler}=useContext(AuthContext)
     const{values,onSubmit,onChange,errors}= useForm(loginSubmitHandler,{
         email:"",
         username:"",
@@ -34,21 +36,24 @@ const ErrorHandleCloser=()=>{
  
     return (
         <>
-            <form onSubmit={onSubmit}>
-              
-                   <label htmlFor="email">email</label>
-                <input type="text" name="email" id="email"  onChange={onChange} value={values.email}  />
-                <label htmlFor="username">username</label>
-                <input type="text"  name="username" id="username" onChange={onChange} value={values.username}/>
-                <label htmlFor="password">password</label>
-                <input type="text" name="password" id="password"  onChange={onChange} value={values.password}/>
-             
-                <input type="submit" onClick={ErrorHandleShow}/>
+           <Form onSubmit={onSubmit}>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" name="email" onChange={onChange} value={values.email} />
+      </Form.Group>
 
-
-
-
-            </form>
+      <Form.Group className="mb-3" controlId="formBasicUsername">
+        <Form.Label>Username</Form.Label>
+        <Form.Control type="username" placeholder="Username" name="username" onChange={onChange} value={values.username} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" name="password" onChange={onChange} value={values.password}/>
+      </Form.Group>
+      <Button variant="primary" type="submit" onClick={ErrorHandleShow}>
+        Submit
+      </Button>
+    </Form>
          <div className="toast-container">
   {errs&&errs.map((error)=>  
         
