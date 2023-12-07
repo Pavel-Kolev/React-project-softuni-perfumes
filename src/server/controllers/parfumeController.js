@@ -1,21 +1,23 @@
 const router = require("express").Router();
 const parfumeService=require("../services/parfumeServices")
 const { auth, isAuthenticated } = require("../middlewares/authmiddleware");
- 
+router.use(auth)
 router.post("/getAll",isAuthenticated,async (req,res)=>{
- 
+  
     if(res.locals.isAuthenticated===false){
         
-        try{
-            const parfumeData =await parfumeService.getAll()
-            res.json(parfumeData)
-        }catch(err){
-            const{message}=err
+      try{
+        const parfumeData =await parfumeService.getAll()
+        res.json(parfumeData)
+      }
+           
+       catch(err){
+        const{message}=err
       
-            const errorMessages=message.split(",")
-            
-            res.status(400).json({errorMessages})
-        }
+        const errorMessages=message.split(",")
+        
+        res.status(400).json({errorMessages})
+       }
  
    }
    else if(res.locals.isAuthenticated===true){
@@ -29,7 +31,7 @@ router.post("/getAll",isAuthenticated,async (req,res)=>{
     }
    catch(err){
     const{message}=err
-      console.log(err)
+      
     const errorMessages=message.split(",")
     
     res.status(400).json({errorMessages})
@@ -71,7 +73,7 @@ router.post("/create",isAuthenticated,async (req, res) => {
   router.post("/MyParfumes",isAuthenticated,async (req,res)=>{
   
     try{
-        console.log(req.user)
+        
         const result =await parfumeService.getParfumesOfUser(req.user._id)
         res.json(result)
     }
@@ -88,5 +90,35 @@ router.post("/create",isAuthenticated,async (req, res) => {
  
     res.end()
 
+  })
+
+  router.post("/getOne",async(req,res)=>{
+try{
+ 
+  const _id=req.body.data
+const result =await parfumeService.getOne(_id)
+ 
+res.json(result)
+
+}catch(err){
+
+}
+res.end()
+  })
+  router.delete("/deleteOne/:_id",async(req,res)=>{
+    try{
+      const{_id}=req.params
+      const result=await parfumeService.deleteOne(_id)
+      res.json(`you have succesfuly deleted the offer with ${-_id} id`)
+    }
+    
+    catch(err){
+      const{message}=err
+      
+      const errorMessages=message.split(",")
+      
+      res.status(400).json({errorMessages})
+    }
+    res.end
   })
 module.exports = router;
