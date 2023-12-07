@@ -47,5 +47,5 @@ else{
       }
      const token= await jwt.sign(payload,"atanas",{expiresIn:"3d"})
     
-     return token
+     return {token:token,id:user._id}
   }
