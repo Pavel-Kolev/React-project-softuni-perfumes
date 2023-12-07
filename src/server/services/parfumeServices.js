@@ -25,3 +25,15 @@ const parfumes= parfume.filter((product)=>product.owner!=owners)
     
     
       }
+      exports.getOne=async(_id)=>{
+        const result=await parfumeee.find({_id}).lean()
+         
+        return result
+      }
+    
+
+      exports.deleteOne=async(_id)=>{
+          const result=await parfumeee.deleteOne({_id}).lean()
+          return result
+
+      }
