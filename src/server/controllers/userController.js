@@ -28,10 +28,10 @@ router.post("/register",async (req,res)=>{
      
      
    try{
-       const token = await userService.login(email,username, password);
+       const {token,id} = await userService.login(email,username, password);
        
       
-       res.json({token,email,username});
+       res.json({token,email,username,id});
      
    }   
        catch(err){
