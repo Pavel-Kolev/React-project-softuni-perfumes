@@ -4,7 +4,7 @@ const jwt = require("../lib/jwt");
 exports.auth = async (req, res, next) => {
   
  
- console.log(req.body.token)
+ 
   const token =  req.body.token 
   if (token) {
     try{
@@ -25,7 +25,7 @@ exports.auth = async (req, res, next) => {
   } 
   else {
     
-    next();
+   
   }
 
  
