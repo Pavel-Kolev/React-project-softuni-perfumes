@@ -1,16 +1,20 @@
 import { useForm } from "./hooks/useForm"
-import { useState,useContext } from "react"
+import { useState,useContext, useMemo } from "react"
 import AuthContext from "./contexts/AuthContext"
 import { Form,Button } from "react-bootstrap"
-function CreateOffer({errs}){
-    const{createOfferHandler}=useContext(AuthContext)
-    const{values,onSubmit,onChange,errors}= useForm(createOfferHandler,{
-        brand:"",
+import { Toast } from "react-bootstrap"
+function CreateOffer(){
+    const{createOfferHandler,errs}=useContext(AuthContext)
+
+
+     const initialValues=useMemo(()=>({
+      brand:"",
         disc:"",
         model:"",
         img:"",
         price:""
-    },[],"createoffer")
+     }),[])
+    const{values,onSubmit,onChange,errors}= useForm(createOfferHandler,initialValues,[],"createoffer")
     const[showErr , setShow]=useState(true)
  
 const ErrorHandleShow=()=>{
@@ -29,7 +33,7 @@ const ErrorHandleCloser=()=>{
     
     }
     return (
-        <>
+        <><div className="container-form">
            <Form onSubmit={onSubmit}>
       <Form.Group className="mb-3" controlId="formBasicBrand">
         <Form.Label>Brand</Form.Label>
@@ -50,15 +54,31 @@ const ErrorHandleCloser=()=>{
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPrice">
       <Form.Label>Price</Form.Label>
-        <Form.Control type="price" placeholder="Pricec" name="price" onChange={onChange} value={values.price}/>
+        <Form.Control type="price" placeholder="Price" name="price" onChange={onChange} value={values.price}/>
       </Form.Group>
       
       <Button variant="primary" type="submit" onClick={ErrorHandleShow}>
         Submit
       </Button>
     </Form>
+    </div>
          <div className="toast-container">
   {errs&&errs.map((error)=>  
+        
+        <Toast show={showErr} onClose={ErrorHandleCloser} key={error}>
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded me-2"
+              alt=""
+            />
+            <strong className="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+          </Toast.Header>
+          <Toast.Body>{error}</Toast.Body>
+        </Toast>
+     )}
+      {errors&&errors.map((error)=>  
         
         <Toast show={showErr} onClose={ErrorHandleCloser} key={error}>
           <Toast.Header>
