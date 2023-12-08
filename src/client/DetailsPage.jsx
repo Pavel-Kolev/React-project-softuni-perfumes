@@ -4,16 +4,18 @@ import { CartContext } from "./CartContext";
 import * as parfumeService from "./services/perfumeService";
 import withOwner from "./HOC/withOwner";
 import { Link } from "react-router-dom";
-
+import DeleteModal from "./Modal"
+import { Button,Modal} from "react-bootstrap";
  function DetailsPage({id}) {
- 
+  const [show, setShow] = useState(false);
  const navigate=useNavigate()
   const { ParfumeId } = useParams();
   const [parfume, setParfume] = useState({});
   const context = useContext(CartContext);
   const { addOneToCart } = context.contextValue;
   const [loading, setLoading] = useState(true);
- 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   
      const [isOwner,SetIsOwner]=useState()
 
@@ -66,7 +68,25 @@ console.log("reached")
                     {!isOwner&&  <button onClick={cartAddHandler}>Add to cart</button>}
                     {isOwner&& 
                     <>
-                    <button onClick={DeleteClickHandler}>Delete Offer</button> 
+                     
+                    <Button variant="secondary" onClick={handleShow}>
+        Delete Offer
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Are you sure</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Clicking delete will delete your offer on the website</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={DeleteClickHandler}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
                     <Link to={`/parfume/${parfume._id}/edit`}  > <button>Update Offer</button></Link>
                     </>}
                  
