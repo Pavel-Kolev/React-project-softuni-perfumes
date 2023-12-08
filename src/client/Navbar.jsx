@@ -1,33 +1,36 @@
 import React, { useContext } from "react";
 import { ReactDOM } from "react";
-import "../public/header.css"
+
 import {Link} from "react-router-dom"
 import AuthContext from "./contexts/AuthContext";
+import "../public/header.css"
 function Navbar(){
 const {isAuthenticated,username}=useContext(AuthContext)
     return(
         <header>
             <nav>
+            <div className="Links">
         <ul >
            
         <p className="branding">Pavels parfumes</p>
-       
-        <li><Link to= "/">Home </Link></li>
-        <li><Link to="/Catalog">Catalog</Link></li>
+      
+        <li><Link to= "/"><p>Home</p> </Link></li>
+        <li><Link to="/Catalog"><p>Catalog</p></Link></li>
         {!isAuthenticated&& <>
-        <li><Link to="/register">Register</Link></li>
-        <li><Link to="/login">Login </Link></li>
+        <li><Link to="/register"><p>Register</p></Link></li>
+        <li><Link to="/login"><p>Login</p> </Link></li>
         </>
          }
-         {isAuthenticated&& <> <li><Link to="/Logout">Logout </Link></li>
-         <li><Link to="/Create">Create </Link></li>
-         <li><Link to="/UserParfumes">My Offers</Link></li>
+         {isAuthenticated&& <> <li><Link to="/Logout"><p>Logout</p> </Link></li>
+         <li><Link to="/Create"><p>Create</p> </Link></li>
+         <li><Link to="/UserParfumes"><p>My Offers</p></Link></li>
            </>
 }
-           <li><Link to="/Cart">Cart </Link></li>
-       
+           <li><Link to="/Cart"><p>Cart </p></Link></li>
+           
         
       </ul>
+      </div>
       </nav>
       </header>
     )
