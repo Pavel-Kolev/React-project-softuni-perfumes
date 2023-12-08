@@ -1,5 +1,5 @@
 function validateRegCredentials(values){
-const {email,username,password}=values
+const {email,username,password,repeatPassword}=values
 let errors=[]
 const userRegex=/[^A-Za-z||0-9]/
 const emailRegex=/[A-Za-z0-9]{5,}[@][a-z]*[.][a-z]*/gm
@@ -17,7 +17,9 @@ errors.push( "The Username Should be atleast 8 char long and contain only letter
 if(password.length<6){
     errors.push( "Password should be atleast 6 char long" )
 }
-
+if(password!==repeatPassword){
+    errors.push("Passwords don't match")
+}
 return(errors)
 }
 export default validateRegCredentials
