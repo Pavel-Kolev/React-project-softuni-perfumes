@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 export default function Home(){
@@ -5,8 +6,15 @@ export default function Home(){
 
 return(
 
-<>
-<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, facilis nulla voluptate vitae maiores ratione. Numquam enim obcaecati porro nemo inventore laudantium dolorum! Dolor repellat, maxime nulla praesentium odit corporis ea tempora perferendis distinctio reiciendis vero voluptates error illo nam quod officiis nisi vel, quam magni voluptas iure voluptatem. Culpa.</p>
+<><main>
+<section className="hero">
+      <div className="hero-content">
+        <h1>Buy,sell and smell the best</h1>
+        <h2>Find or sell fragnances</h2>
+        <Link to={'/Catalog'} className="btn-shop-now">Shop Now</Link>
+      </div>
+    </section>
+    </main>
 </>
 
 
