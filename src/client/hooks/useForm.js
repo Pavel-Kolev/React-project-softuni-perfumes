@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import validateRegCredentials from "../utils/validateUsers";
 import * as userService from "../services/userService"
+import validateOffer from "../utils/validateOffer";
 export   function useForm (SubmitHandler,initialValues,startingErrors,type){
+  
     const [values,setValues]= useState(initialValues)
+    useEffect(()=>{
+        setValues(initialValues)
+    },[initialValues])
     const[errors,setErrors]=useState(startingErrors)
     const onChange=(e)=>{
             setValues(state=>( {
@@ -64,10 +69,20 @@ else if(type==="createoffer"){
     const onSubmit=(e)=>{
       
         e.preventDefault()
+        validateOffer(values)===undefined?setErrors([]):setErrors(validateOffer(values))
+       
+        if(errors.length===0){
+            
+            
+            
+            SubmitHandler(values)
+       }
+       else{
           
-         
+           return(errors)
+       }
              
-          SubmitHandler(values)
+         
        
         
           
@@ -80,5 +95,34 @@ else if(type==="createoffer"){
     }
 
 }
-   
+else if(type==="editoffer"){
+    const onSubmit=(e)=>{
+      
+        e.preventDefault()
+          
+         
+             
+        validateOffer(values)===undefined?setErrors([]):setErrors(validateOffer(values))
+        if(errors.length===0){
+            
+            
+            
+            SubmitHandler(values)
+       }
+       else{
+          
+           return(errors)
+       }
+       
+        
+          
+    }
+    return{
+        values,
+        onChange,
+        onSubmit,
+        errors
+    }
+
+}
 }
