@@ -26,3 +26,14 @@ return result
     
     return result
   }
+  export const GetOne=async(data)=>{
+
+    const result =await request.post(`${baseurl}/getOne`,data)
+    return result
+  }
+  export const DeleteParfume=async(data)=>{
+    const result=await request.remove(`${baseurl}/deleteOne/${data}`)
+  }
+  export const UpdateParfume=async(data,parfumeid)=>{
+    const result=await request.put(`${baseurl}/updateOne/${parfumeid}`,data)
+  }
