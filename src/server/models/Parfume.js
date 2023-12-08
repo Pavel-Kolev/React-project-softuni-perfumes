@@ -1,7 +1,9 @@
 const mongoose =require("mongoose")
 
 const ParfumeSchema=new mongoose.Schema({
-    img:String,
+    img:{type:String,
+        required: [true, "Provide an img"],
+    match:[/(https?:\/\/.*\.(?:png|jpg))/i,"Provide valid link"]},
 brand:String,
 model:String,
 disc:String,
