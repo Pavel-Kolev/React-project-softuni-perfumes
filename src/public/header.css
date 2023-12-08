@@ -1,3 +1,61 @@
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+  }
+  .Links ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+   .Links ul li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+   border: none;
+  }
+  
+  .branding {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  
+  .Links li a{
+    text-decoration: none;
+    
+  }
+  .Links a p:hover{
+    color: #000;
+  }
+  .Links a {
+    margin:0;
+    text-decoration: none;
+    /* color: #4f4a4a; */
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  .Links p{
+    color: #333;
+    margin:0;
+  }
+  
+   
+  
+  /* Mobile Responsive Design */
+  @media (max-width: 768px) {
+    .links {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .links li {
+      margin-bottom: 10px;
+    }
+  }
 header ul li{
     font-family:Arial, Helvetica, sans-serif;
     display:block;
@@ -20,7 +78,7 @@ header ul li{
     z-index: 10;
    max-height: fit-content;
  
-    background-color: #FFCAB1;
+   
  
     align-items: center;
     
@@ -44,15 +102,5 @@ header ul{
     margin:0;
  
 }
-a{
-    display: block;
-   color : white;
-text-decoration: none;
-    font-size: 15px;
-    width:100%;
-}
-a:hover{
-    background-color: #ffcab1;
-    opacity: 50%;
-    color: skyblue;
- }
+ 
+ 
