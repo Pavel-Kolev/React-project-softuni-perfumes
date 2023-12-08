@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useState,useMemo } from "react"
 import { useForm } from "./hooks/useForm"
 import * as userService from "./services/userService"
 import AuthContext from "./contexts/AuthContext"
@@ -10,12 +10,14 @@ import Form from 'react-bootstrap/Form';
 
 export default function Register({arr} ) {
   const{registerSubmitHandler}=useContext(AuthContext)
-const{values,onSubmit,onChange,errors}= useForm(registerSubmitHandler,{
+  const initialValues=useMemo(()=>({
     email:"",
     username:"",
     password:"",
-},[],"register")
-const[showErr , setShow]=useState(true)
+    repeatPassword:"",
+}),[])
+const{values,onSubmit,onChange,errors}= useForm(registerSubmitHandler,initialValues,[],"register")
+const[showErr , setShow]=useState(false)
  
 const ErrorHandleShow=()=>{
     if(arr||errors){
@@ -38,6 +40,7 @@ const ErrorHandleCloser=()=>{
 console
     return (
       <>
+      <div className="container-form">
 <Form onSubmit={onSubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
@@ -52,10 +55,15 @@ console
       <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" name="password" onChange={onChange} value={values.password}/>
       </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicRePassword">
+      <Form.Label>Password</Form.Label>
+        <Form.Control type="repeatPassword" placeholder="Password" name="repeatPassword" onChange={onChange} value={values.repeatPassword}/>
+      </Form.Group>
       <Button variant="primary" type="submit" onClick={ErrorHandleShow}>
         Submit
       </Button>
     </Form>
+    </div>
     <div className="toast-container">
                 {errors&&errors.map((error)=>  
         
