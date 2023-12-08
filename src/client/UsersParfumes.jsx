@@ -2,27 +2,29 @@ import { useContext, useEffect, useState } from "react"
 import ProductSection from "./ProductSection"
 import Itemcard from "./Itemcards"
 import * as perfumeService from"./services/perfumeService"
-import AuthContext from "./contexts/AuthContext"
+import { useLocation } from "react-router-dom"
+ 
+
 
 
 
 function UserOffers(){
+    
+ 
 
-const {token,username}=useContext(AuthContext)
 const [products,setProducts]=useState([])
 useEffect( ()=>{
-    perfumeService.GetUsersParfumes().then(parfume=>setProducts(parfume))
+    perfumeService.GetUsersParfumes().then(parfumes=>(parfumes.map((parfume)=> ({...parfume ,isOwner:true})   ))).then(parfume=>setProducts(parfume))
 
 },[])
  
-
 
 return(
 
      
     <div className='product-section'>
 {products&&products.map((product)=>
-        <Itemcard key={product._id} {...product}></Itemcard>)}
+        <Itemcard key={product._id} {...product}  ></Itemcard>)}
 
         </div>
     
