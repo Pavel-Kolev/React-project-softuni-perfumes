@@ -21,15 +21,15 @@ export function ContextProvider(props) {
   const [cartProducts, setCartProducts] = useState();
   const [loading, setLoading] = useState(true);
 const token=localStorage.getItem("token")
-  
+  const {email}=useContext(AuthContext)
   useEffect(() => {
    
-      perfumeService.getAllParfumes(token).then(productwithquant=>(productwithquant.map((cartProducts)=> ({...cartProducts , quantity:0})   ))).then(productswithquant=>setCartProducts(productswithquant))
+      perfumeService.getAllParfumes().then(productwithquant=>(productwithquant.map((cartProducts)=> ({...cartProducts , quantity:0})   ))).then(productswithquant=>setCartProducts(productswithquant))
       setLoading(false)
       
  
    
-  },[])
+  },[email])
  
 
 
@@ -78,9 +78,10 @@ const token=localStorage.getItem("token")
     }
   }
   function getProductDetails(_id) {
-    const quantity = cartProducts.find(
+    console.log(cartProducts)
+    const product = cartProducts.find(
       (product) => (product._id = _id)
-    )?.quantity;
+    )?.product;
 
     return product;
   }

@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "../public/cart.css"
 export default function Cart(){
     const context= useContext(CartContext)
-    const [shownItems,setShownitems]=useState({})
+    const [shownItems,setShownitems]=useState([])
     
         const {items}= context.contextValue
          useEffect(()=>{
@@ -21,7 +21,7 @@ export default function Cart(){
          },[])
            
         
-     
+   
     return(
         <>
 <div className="cart-section">
@@ -32,6 +32,7 @@ export default function Cart(){
           <th>продукт</th>
           <th>количество</th>
           <th>Цена</th>
+          <th>опции</th>
           </tr>
       </thead>
       <tbody>

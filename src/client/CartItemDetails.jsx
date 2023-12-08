@@ -25,8 +25,8 @@ return(<>
           <td>{price}</td>
           <td>
             <div className="buttons-group">
-                <Button>add</Button>
-                <Button>reset</Button>
+           
+               
                 <Button onClick={removeFromCartHandler}>delete</Button>
             </div>
 
