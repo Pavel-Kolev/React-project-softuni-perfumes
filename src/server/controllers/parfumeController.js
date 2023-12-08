@@ -45,7 +45,7 @@ router.post("/getAll",isAuthenticated,async (req,res)=>{
 }) 
 router.post("/create",isAuthenticated,async (req, res) => {
    
-    const { name, disc, img,brand,price  } = req.body.data;
+    const { name, disc, img,brand,price,model  } = req.body.data;
  
   try{
     await parfumeService.create({
@@ -110,6 +110,24 @@ res.end()
       const{_id}=req.params
       const result=await parfumeService.deleteOne(_id)
       res.json(`you have succesfuly deleted the offer with ${-_id} id`)
+    }
+    
+    catch(err){
+      const{message}=err
+      
+      const errorMessages=message.split(",")
+      
+      res.status(400).json({errorMessages})
+    }
+    res.end
+  })
+  router.put("/updateOne/:_id",async(req,res)=>{
+    try{
+      const{_id}=req.params
+      const data=req.body.data
+        const result =await parfumeService.updateOne(_id,data)
+        console.log(_id)
+      res.json(`you have succesfuly updated the offer with ${_id} id`)
     }
     
     catch(err){
