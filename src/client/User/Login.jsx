@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState,useMemo } from "react"
-import { useForm } from "./hooks/useForm"
-import * as userService from "./services/userService"
+import { useForm } from "../hooks/useForm"
+import * as userService from "../services/userService"
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast';
-import AuthContext from "./contexts/AuthContext";
+import AuthContext from "../contexts/AuthContext";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 export default function Login( ){

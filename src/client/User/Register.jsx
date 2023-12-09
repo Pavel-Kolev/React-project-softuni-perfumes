@@ -1,7 +1,7 @@
 import { useContext, useState,useMemo } from "react"
-import { useForm } from "./hooks/useForm"
-import * as userService from "./services/userService"
-import AuthContext from "./contexts/AuthContext"
+import { useForm } from "../hooks/useForm"
+import * as userService from "../services/userService"
+import AuthContext from "../contexts/AuthContext"
 import Toast from 'react-bootstrap/Toast';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';

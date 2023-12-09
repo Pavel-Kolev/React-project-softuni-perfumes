@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
-import ProductSection from "./ProductSection"
-import Itemcard from "./Itemcards"
-import * as perfumeService from"./services/perfumeService"
+import ProductSection from "../../Parfume/ProductSection"
+import Itemcard from "../../Parfume/Itemcards"
+import * as perfumeService from"../services/perfumeService"
 import { useLocation } from "react-router-dom"
  
 

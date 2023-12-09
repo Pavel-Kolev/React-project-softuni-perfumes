@@ -1,58 +1,28 @@
-import { useForm } from "./hooks/useForm"
-import { useState,useContext,useEffect } from "react"
-import AuthContext from "./contexts/AuthContext"
+import { useForm } from "../client/hooks/useForm"
+import { useState,useContext, useMemo } from "react"
+import AuthContext from "../client/contexts/AuthContext"
 import { Form,Button } from "react-bootstrap"
-import { useParams } from "react-router-dom"
- import * as parfumeService from "./services/perfumeService"
- import { Toast } from "react-bootstrap"
-function EditOffer(){
- 
-  const [err, setErr] = useState([]);
-  const {ParfumeId}=useParams()
-  const [parfume, setParfume] = useState({ brand:"",
-    disc:"",
-    model:"",
-    img:"",
-    price:""});
-    const{errs}=useContext(AuthContext)
-    const editOfferHandler = async (data) => {
-      const result =await parfumeService.UpdateParfume(data,ParfumeId)
-   
-      if (result.errorMessages) {
-        setErr(result.errorMessages);
-      } else {
-        setErr();
-        
-      }
- 
-    };
+import { Toast } from "react-bootstrap"
+function CreateOffer(){
+    const{createOfferHandler,errs}=useContext(AuthContext)
 
-    useEffect(() => {
-      async function GetOne() {
-        const parfumes = await parfumeService.GetOne(ParfumeId);
-  
-        setParfume(...parfumes);
-      
-    
-         
-      
-      }
-      GetOne();
-    }, [ParfumeId]);
-    
-    const{values,onSubmit,onChange,errors,type}= useForm(editOfferHandler,parfume,[],"editoffer")
-    
-    
+
+     const initialValues=useMemo(()=>({
+      brand:"",
+        disc:"",
+        model:"",
+        img:"",
+        price:""
+     }),[])
+    const{values,onSubmit,onChange,errors}= useForm(createOfferHandler,initialValues,[],"createoffer")
     const[showErr , setShow]=useState(true)
-   
+ 
 const ErrorHandleShow=()=>{
-    if(err||errors||errs){
+    if(errs||errors){
         setShow(true)
-        
     }
   
 else{
-
     setShow(false)
 }
 
@@ -62,7 +32,6 @@ const ErrorHandleCloser=()=>{
     
     
     }
-    
     return (
         <><div className="container-form">
            <Form onSubmit={onSubmit}>
@@ -92,12 +61,24 @@ const ErrorHandleCloser=()=>{
         Submit
       </Button>
     </Form>
-   
- 
-     
     </div>
          <div className="toast-container">
-  {errors&&errors.map((error)=>  
+  {errs&&errs.map((error)=>  
+        
+        <Toast show={showErr} onClose={ErrorHandleCloser} key={error}>
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded me-2"
+              alt=""
+            />
+            <strong className="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+          </Toast.Header>
+          <Toast.Body>{error}</Toast.Body>
+        </Toast>
+     )}
+      {errors&&errors.map((error)=>  
         
         <Toast show={showErr} onClose={ErrorHandleCloser} key={error}>
           <Toast.Header>
@@ -119,4 +100,4 @@ const ErrorHandleCloser=()=>{
     )
 }
 
-export default EditOffer
+export default CreateOffer

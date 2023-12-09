@@ -2,10 +2,10 @@ import React from "react";
 import { useState } from 'react'
  import { useEffect } from 'react'
  
- import * as perfumeService from"./services/perfumeService"
+ import * as perfumeService from"../client/services/perfumeService"
 import Itemcard from "./Itemcards";
 import Spinner from 'react-bootstrap/Spinner';
-import CardLoading from "./CardLoading";
+import CardLoading from "../client/CardLoading";
  
 
 

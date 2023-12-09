@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import * as offerService from "./services/offerService"
+import * as offerService from "../services/offerService"
 import { useEffect, useState } from "react";
 
 

@@ -3,23 +3,23 @@
 import "../public/styles.css";
 import Navbar from "./Navbar";
 
-import ProductSection from "./ProductSection";
+import ProductSection from "../Parfume/ProductSection";
 
 import { Route, Routes} from "react-router-dom";
-import Register from "./Register";
-import Login from "./Login";
+import Register from "./User/Register";
+import Login from "./User/Login";
 import Cart from "./Cart";
 import Home from "./Home";
 import { ContextProvider } from "./CartContext";
 
 
-import Logout from "./Logout";
+import Logout from "./User/Logout";
 
-import CreateOffer from "./CreateOffer";
-import UsersParfumes from "./UsersParfumes";
+import CreateOffer from "../Parfume/CreateListing";
+import UsersParfumes from "./User/UsersParfumes";
 import { AuthProvider } from "./contexts/AuthContext";
-import DetailsPage from "./DetailsPage";
-import EditOffer from "./EditOffer";
+import DetailsPage from "../Parfume/DetailsPage";
+import EditOffer from "./Offers/EditOffer";
 
 function App() {
   

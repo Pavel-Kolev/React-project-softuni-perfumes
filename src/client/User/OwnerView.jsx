@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { Button,Modal } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import * as offerServices from "./services/offerService"
-import OfferView from "./OfferView"
+import * as offerServices from "../services/offerService"
+import OfferView from "../Offers/OfferView"
 export default function OwnerView({handleShow,handleClose,show,DeleteClickHandler,parfumID}){
 
 const [counterOffers,setCounterOffers]=useState()

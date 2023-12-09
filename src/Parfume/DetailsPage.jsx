@@ -1,17 +1,17 @@
 import { useContext, useEffect, useState, useMemo } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { CartContext } from "./CartContext";
-import * as parfumeService from "./services/perfumeService";
-import withOwner from "./HOC/withOwner";
+import { CartContext } from "../client/CartContext";
+import * as parfumeService from "../client/services/perfumeService";
+import withOwner from "../client/HOC/withOwner";
 import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { Button, Modal } from "react-bootstrap";
-import { useForm } from "./hooks/useForm";
-import * as offerService from "./services/offerService";
-import AuthContext from "./contexts/AuthContext";
-import CommentSender from "./CommentSender";
-import OwnerView from "./OwnerView";
-import validateOffer from "./utils/validateOffers";
+import { useForm } from "../client/hooks/useForm";
+import * as offerService from "../client/services/offerService";
+import AuthContext from "../client/contexts/AuthContext";
+import CommentSender from "../client/Offers/OfferSender";
+import OwnerView from "../client/User/OwnerView";
+import validateOffer from "../client/utils/validateOffers";
 function DetailsPage({id} ) {
   const {isAuthenticated}=useContext(AuthContext)
   

@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ReactDOM } from "react";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../client/CartContext";
 
 import "../public/styles.css"
  import {Link, useLocation} from "react-router-dom"
  import Button from 'react-bootstrap/Button';
  
  import Card from 'react-bootstrap/Card';
-import AuthContext from "./contexts/AuthContext";
-import withOwner from "./HOC/withOwner";
+import AuthContext from "../client/contexts/AuthContext";
+import withOwner from "../client/HOC/withOwner";
 
 function Itemcard({_id,brand,model,disc,price,img}){
     const context= useContext(CartContext)
