@@ -1,5 +1,5 @@
 import * as request from '../lib/request'
-const baseurl="http://localhost:5000/user"
+const baseurl="https://project-parfumewebsite.onrender.com/user"
 export const  register= async (data)=>{ 
   const result =await request.post(`${baseurl}/register`,data) 
 

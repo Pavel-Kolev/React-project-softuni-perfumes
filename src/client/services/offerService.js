@@ -1,5 +1,5 @@
 import * as request from "../lib/request"
-const baseurl="http://localhost:5000/offers"
+const baseurl="https://project-parfumewebsite.onrender.com/offers"
 export const CreateComment=async (ParfumeId,data)=>{
 const result =await request.post(`${baseurl}/${ParfumeId}/create`,data)
 return result

@@ -1,6 +1,6 @@
  
 import * as request from "../lib/request"
-const baseurl="http://localhost:5000/parfumes"
+const baseurl="https://project-parfumewebsite.onrender.com/parfumes"
 export const  getAllParfumes= async ()=>{ 
      
     const result =await request.post(`${baseurl}/getAll`)
