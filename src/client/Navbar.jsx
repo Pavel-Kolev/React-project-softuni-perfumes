@@ -26,7 +26,7 @@ const {isAuthenticated,username}=useContext(AuthContext)
          <li><Link to="/UserParfumes"><p>My Offers</p></Link></li>
            </>
 }
-           <li><Link to="/Cart"><p>Cart </p></Link></li>
+         
            
         
       </ul>
