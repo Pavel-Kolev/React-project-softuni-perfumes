@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 
 import "../public/styles.css";
 import Navbar from "./Navbar";
@@ -55,7 +55,7 @@ function App() {
                 />
               }
             ></Route>
-            <Route path="/cart" element={<Cart />}></Route>
+         
             <Route path="/Logout" element={<Logout />}></Route>
             <Route
               path="/Create"
