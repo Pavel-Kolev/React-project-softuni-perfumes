@@ -5,16 +5,16 @@ const port=5000;
 const userService=require("./services/userServices")
 const parfumeService=require("./services/parfumeServices")
 const app=express();
-const URL="mongodb://127.0.0.1:27017/parfumes"
+const {uri}=require("./constants")
 const errorHandlerMiddleware = require("./middlewares/errorMessage")
 const routes = require("./router")
 const cookieParser=require("cookie-parser");
-
+ 
 
  
 async function dbConnect(){
     try{
-        await mongoose.connect(URL)
+        await mongoose.connect(uri,{ useNewUrlParser: true, useUnifiedTopology: true })
         console.log("connected")
     }
    catch(error){
