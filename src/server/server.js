@@ -1,4 +1,6 @@
 const express =require("express")
+require('dotenv').config()
+ 
 const mongoose=require("mongoose");
 const cors = require('cors');
 const port=5000;
@@ -9,12 +11,12 @@ const {uri}=require("./constants")
 const errorHandlerMiddleware = require("./middlewares/errorMessage")
 const routes = require("./router")
 const cookieParser=require("cookie-parser");
- 
-
+ console.log(process.env.Mongo_uri)
+ console.log(process.env.secret)
  
 async function dbConnect(){
     try{
-        await mongoose.connect(uri,{ useNewUrlParser: true, useUnifiedTopology: true })
+        await mongoose.connect(process.env.Mongo_uri,{ useNewUrlParser: true, useUnifiedTopology: true })
         console.log("connected")
     }
    catch(error){

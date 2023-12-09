@@ -1,4 +1,5 @@
 const User =require("../models/User")
+require('dotenv').config()
 const bcrypt=require("bcrypt") 
 const jwt=require("../lib/jwt")
 exports.register= async (email,username,password)=>{
@@ -16,7 +17,8 @@ else{
         email:user.email,
         username:user.username,
     }
-   const token= await jwt.sign(payload,"atanas",{expiresIn:"3d"})
+   
+   const token= await jwt.sign(payload,process.env.secret,{expiresIn:"3d"})
   
    return token
  
@@ -45,7 +47,7 @@ else{
           _id:user._id,
           username:user.username,
       }
-     const token= await jwt.sign(payload,"atanas",{expiresIn:"3d"})
+     const token= await jwt.sign(payload,process.env.secret,{expiresIn:"3d"})
     
      return {token:token,id:user._id}
   }
