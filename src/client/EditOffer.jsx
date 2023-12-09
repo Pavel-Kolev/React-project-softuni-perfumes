@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
  import * as parfumeService from "./services/perfumeService"
  import { Toast } from "react-bootstrap"
 function EditOffer(){
+ 
   const [err, setErr] = useState([]);
   const {ParfumeId}=useParams()
   const [parfume, setParfume] = useState({ brand:"",
@@ -41,15 +42,17 @@ function EditOffer(){
     
     const{values,onSubmit,onChange,errors,type}= useForm(editOfferHandler,parfume,[],"editoffer")
     
-    console.log(errors)
+    
     const[showErr , setShow]=useState(true)
    
 const ErrorHandleShow=()=>{
-    if(errs||errors){
+    if(err||errors||errs){
         setShow(true)
+        
     }
   
 else{
+
     setShow(false)
 }
 
@@ -89,6 +92,9 @@ const ErrorHandleCloser=()=>{
         Submit
       </Button>
     </Form>
+   
+ 
+     
     </div>
          <div className="toast-container">
   {errors&&errors.map((error)=>  
