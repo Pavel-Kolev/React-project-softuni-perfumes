@@ -56,8 +56,8 @@ console
         <Form.Control type="password" placeholder="Password" name="password" onChange={onChange} value={values.password}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicRePassword">
-      <Form.Label>Password</Form.Label>
-        <Form.Control type="repeatPassword" placeholder="Password" name="repeatPassword" onChange={onChange} value={values.repeatPassword}/>
+      <Form.Label> Repeat Password</Form.Label>
+        <Form.Control type="repeatPassword" placeholder="Repeat password" name="repeatPassword" onChange={onChange} value={values.repeatPassword}/>
       </Form.Group>
       <Button variant="primary" type="submit" onClick={ErrorHandleShow}>
         Submit
