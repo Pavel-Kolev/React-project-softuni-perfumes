@@ -125,4 +125,25 @@ else if(type==="editoffer"){
     }
 
 }
+else if(type==="createCounterOffer"){
+    const onSubmit=(e)=>{
+        e.preventDefault()
+          
+         
+             
+        
+         
+            
+            
+            
+            SubmitHandler(values)
+       
+    }
+    return{
+        values,
+        onChange,
+        onSubmit,
+        errors
+    }
+}
 }
