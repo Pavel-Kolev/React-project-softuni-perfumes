@@ -9,7 +9,7 @@ const [counterOffers,setCounterOffers]=useState()
 const  [changed,setTouchedState]=useState(false)
 const handleTouch=()=>{
   setTouchedState(!changed)
-  console.log("reach")
+ 
 }
 
 useEffect(()=>{

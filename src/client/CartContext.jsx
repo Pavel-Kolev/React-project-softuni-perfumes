@@ -78,7 +78,7 @@ const token=localStorage.getItem("token")
     }
   }
   function getProductDetails(_id) {
-    console.log(cartProducts)
+ 
     const product = cartProducts.find(
       (product) => (product._id = _id)
     )?.product;

@@ -126,7 +126,7 @@ res.end()
       const{_id}=req.params
       const data=req.body.data
         const result =await parfumeService.updateOne(_id,data)
-        console.log(_id)
+     
       res.json(`you have succesfuly updated the offer with ${_id} id`)
     }
     

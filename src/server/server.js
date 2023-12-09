@@ -11,8 +11,7 @@ const app=express();
 const errorHandlerMiddleware = require("./middlewares/errorMessage")
 const routes = require("./router")
 const cookieParser=require("cookie-parser");
- console.log(process.env.Mongo_uri)
- console.log(process.env.secret)
+ 
  
 async function dbConnect(){
     try{
@@ -20,7 +19,7 @@ async function dbConnect(){
         console.log("connected")
     }
    catch(error){
-    console.log(error)
+     
    }
 }
 dbConnect()

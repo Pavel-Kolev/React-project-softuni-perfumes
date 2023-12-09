@@ -16,10 +16,10 @@ exports.createBid=async(ParfumeId,data)=>{
 }
 exports.find=async(ParfumeId)=>{
  const parfume =await this.getSingleParfume(ParfumeId)
- console.log(parfume)
+ 
     const CounterOffers=parfume.offers
     
-    console.log(CounterOffers)
+   
     return CounterOffers
     
 }

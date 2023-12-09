@@ -19,7 +19,7 @@ if(data){
  
     options.body.token=token
     options.body=JSON.stringify(options.body)
-    console.log(options.body)
+ 
 }
 
 
@@ -34,7 +34,7 @@ if(data){
         "content-type":"application/json",
      
     }
-   console.log(options.body)
+ 
      
  }
  

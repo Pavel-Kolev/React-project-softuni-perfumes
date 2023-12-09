@@ -38,8 +38,8 @@ const parfumes= parfume.filter((product)=>product.owner!=owners)
 
       }
       exports.updateOne=async(_id,data)=>{
-        console.log(data)
+        
         const result=await parfumeee.updateOne({_id},data).lean()
-        console.log(result)
+         
         return result
       }

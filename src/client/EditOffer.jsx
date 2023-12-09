@@ -24,7 +24,7 @@ function EditOffer(){
         setErr();
         
       }
-      console.log(result)
+ 
     };
 
     useEffect(() => {
