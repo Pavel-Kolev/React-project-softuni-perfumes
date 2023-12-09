@@ -26,15 +26,17 @@ useEffect(()=>{
 
     return(  <>
         
-        <div className="comments-container">
+        
+        {counterOffers&&counterOffers.map((offer)=><><div className="comments-container">
         <h2>Comments</h2>
-        {counterOffers&&counterOffers.map((offer)=>
+       
             <OfferView key={offer._id}{...offer} parfumID={parfumID}  handleTouch={handleTouch}/> 
+            </div></>
         ) 
         
         
          }
-            </div>
+           
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Are you sure</Modal.Title>
