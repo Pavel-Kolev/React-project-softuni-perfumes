@@ -28,7 +28,7 @@ app.use(errorHandlerMiddleware)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-	origin: 'https://main--incomparable-gumdrop-00bbd4.netlify.app',
+	origin: 'https://incomparable-gumdrop-00bbd4.netlify.app/',
 	credentials: true
 }))
 app.use(cookieParser())
