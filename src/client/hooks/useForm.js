@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import validateRegCredentials from "../utils/validateUsers";
 import * as userService from "../services/userService"
-import validateOffer from "../utils/validateOffer";
+import validateOffer from "../utils/validateOffers";
+import validateListing from "../utils/validateListing";
 export   function useForm (SubmitHandler,initialValues,startingErrors,type){
   
     const [values,setValues]= useState(initialValues)
@@ -69,7 +70,7 @@ else if(type==="createoffer"){
     const onSubmit=(e)=>{
       
         e.preventDefault()
-        validateOffer(values)===undefined?setErrors([]):setErrors(validateOffer(values))
+        validateListing(values)===undefined?setErrors([]):setErrors(validateListing(values))
        
         if(errors.length===0){
             
@@ -102,7 +103,7 @@ else if(type==="editoffer"){
           
          
              
-        validateOffer(values)===undefined?setErrors([]):setErrors(validateOffer(values))
+        validateListing(values)===undefined?setErrors([]):setErrors(validateListing(values))
         if(errors.length===0){
             
             
@@ -126,17 +127,24 @@ else if(type==="editoffer"){
 
 }
 else if(type==="createCounterOffer"){
+  
+    
     const onSubmit=(e)=>{
         e.preventDefault()
           
          
+            
+            
+            
+            SubmitHandler(values)
+       
              
         
          
             
             
             
-            SubmitHandler(values)
+        
        
     }
     return{
