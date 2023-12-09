@@ -4,27 +4,32 @@ import { Link } from "react-router-dom"
 import * as offerServices from "./services/offerService"
 import OfferView from "./OfferView"
 export default function OwnerView({handleShow,handleClose,show,DeleteClickHandler,parfumID}){
-  const [changed,setTouchedState]=useState(false)
+
 const [counterOffers,setCounterOffers]=useState()
-const [loading,setLoading]=useState(true)
+const  [changed,setTouchedState]=useState(false)
+const handleTouch=()=>{
+  setTouchedState(!changed)
+  console.log("reach")
+}
+
 useEffect(()=>{
+  offerServices.FindComments(parfumID).then(result=>setCounterOffers(result))
+         
     
-         offerServices.FindComments(parfumID).then(result=>setCounterOffers(result))
-      setLoading(false)
          
        
-   
+  
 
 },[parfumID,changed])
- 
+
 
 
     return(  <>
         
-        <div class="comments-container">
+        <div className="comments-container">
         <h2>Comments</h2>
         {counterOffers&&counterOffers.map((offer)=>
-            <OfferView key={offer._id}{...offer} parfumID={parfumID} changed={changed} setTouchedState={setTouchedState}/> 
+            <OfferView key={offer._id}{...offer} parfumID={parfumID}  handleTouch={handleTouch}/> 
         ) 
         
         
