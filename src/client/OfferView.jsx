@@ -4,13 +4,20 @@ import { useEffect, useState } from "react";
 
 
 
-export default function OfferView({additionalInfo,counterPrice,_id,parfumID,changed,setTouchedState}){
+export default function OfferView({_id,additionalInfo,counterPrice,parfumID,handleTouch}){
+     
   
-       
+ 
    
-const deleteCommentHandler=()=>{
-    offerService.DeleteComment(_id,parfumID)
-    setTouchedState(!changed)
+    const deleteCommentHandler=async()=>{
+  
+         await offerService.DeleteComment(_id,parfumID)
+        handleTouch()
+       
+      }
+const acceptOfferHandler=async ()=>{
+    await offerService.DeleteComment(_id,parfumID)
+    handleTouch()
 }
  
     return(
@@ -25,7 +32,7 @@ const deleteCommentHandler=()=>{
             </div>
             
             <div className="offer-buttons">
-            <Button>accept  </Button>
+            <Button onClick={acceptOfferHandler}>accept  </Button>
             <Button onClick={deleteCommentHandler}>reject  </Button>
 
             </div>
