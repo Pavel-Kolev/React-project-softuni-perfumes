@@ -1,4 +1,4 @@
-const bids=require("./../models/Bids")
+const bids=require("../models/Bid")
 const parfumes=require('./../models/Parfume')
 exports.getSingleParfume = (id) => {
     return parfumes.findById(id).populate("offers")
