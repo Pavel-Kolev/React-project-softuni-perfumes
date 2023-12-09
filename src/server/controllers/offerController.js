@@ -22,7 +22,7 @@ router.post('/:id/create',(req,res)=>{
 })
 router.post('/:id/find',async (req,res)=>{
     const {id}=req.params
-    const userid=req.user._id
+  
     try {
       const result= await offerServices.find(id)
        res.json(result)
@@ -34,14 +34,14 @@ router.post('/:id/find',async (req,res)=>{
         
         res.status(400).json({errorMessages})
     }
-
+res.end()
 })
 router.delete('/:parfumeId/:id/delete',async (req,res)=>{
     const {id}=req.params
    const {parfumeId}=req.params
     try {
       const result= await offerServices.delete(id,parfumeId)
-       res.json(result)
+       res.json("succesful deletion")
 
     } catch (error) {
         const{message}=error
@@ -50,6 +50,6 @@ router.delete('/:parfumeId/:id/delete',async (req,res)=>{
         
         res.status(400).json({errorMessages})
     }
-
+res.end()
 })
 module.exports=router
