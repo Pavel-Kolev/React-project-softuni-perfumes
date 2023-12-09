@@ -12,6 +12,10 @@ owner:{
     type:mongoose.Types.ObjectId,
     ref:"User"
 }
+,offers:[{
+ type:mongoose.Types.ObjectId,
+ ref:"bid"
+}]
 
 })
 const parfume=mongoose.model("parfume",ParfumeSchema)
