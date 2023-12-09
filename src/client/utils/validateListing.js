@@ -1,4 +1,4 @@
-function validateOffer(values){
+function validateListing(values){
     const {brand,model,img,price,disc}=values
     let errors=[]
     
@@ -12,4 +12,4 @@ function validateOffer(values){
     }
     return(errors)
     }
-    export default validateOffer
+    export default validateListing
