@@ -11,32 +11,41 @@ import * as offerService from "./services/offerService";
 import AuthContext from "./contexts/AuthContext";
 import CommentSender from "./CommentSender";
 import OwnerView from "./OwnerView";
-function DetailsPage({ id }) {
+import validateOffer from "./utils/validateOffers";
+function DetailsPage({id} ) {
   const {isAuthenticated}=useContext(AuthContext)
-  const [errs, setErrs] = useState();
+  
   const { ParfumeId } = useParams();
-  const initialValues = useMemo(
-    () => ({
-      additionalInfo: "",
-      counterPrice: "",
-    }),[])
+   
+    const initialValues = useMemo(
+      () => ({
+        additionalInfo: "",
+        counterPrice: "",
+      }),[])
+ 
+ 
   const [show, setShow] = useState(false);
   const [parfume, setParfume] = useState({});
-  const context = useContext(CartContext);
-  const { addOneToCart } = context.contextValue;
+   
+  
   const [loading, setLoading] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [isOwner, SetIsOwner] = useState();
-
+const[err,setErrors]=useState()
   const createOfferHandler = async (data) => {
-console.log(ParfumeId)
-    const result = await offerService.CreateComment(ParfumeId, data);
-    if (result.errorMessages) {
-      setErrs(result.errorMessages);
-    } else {
-      setErrs();
+     validateOffer(data)===undefined?setErrors([]):setErrors(validateOffer(data))
+
+    if(err.length===0){
+      const result = await offerService.CreateComment(ParfumeId, data);
+      if (result.errorMessages) {
+        setErrors(result.errorMessages);
+      } else {
+        setErrors();
+      }
     }
+    
+   
   };
   const DeleteClickHandler = () => {
     parfumeService.DeleteParfume(ParfumeId);
@@ -58,21 +67,24 @@ console.log(ParfumeId)
     
     useEffect(() => {
       async function GetOne() {
+      
         const parfumes = await parfumeService.GetOne(ParfumeId);
 
         setParfume(...parfumes);
-        setLoading(false);
-        SetIsOwner(parfume.owner == id);
+        
+        SetIsOwner(parfume.owner ===id);
+        setLoading(false)
+      
       }
       GetOne();
-    }, [ParfumeId, isOwner]);
+    }, [ParfumeId,isOwner]);
  
 
     
 
     return (
       <>
-        {!loading && (
+        (
           <>
             <div className="container">
               <div className="details">
@@ -86,10 +98,7 @@ console.log(ParfumeId)
 
                   <div className="price">{parfume.price}$</div>
                   <div className="discription">{parfume.disc}</div>
-
-                  {!isOwner && (
-                  <CommentSender  onSubmit={onSubmit} values={values} onChange={onChange} ErrorHandleShow={ErrorHandleShow}/>
-                  )} {isOwner &&(<>
+                  {!loading&&isOwner &&(<>
                     <div className="buttons">
                     <Button variant="secondary" onClick={handleShow}>
             Delete Offer
@@ -102,14 +111,23 @@ console.log(ParfumeId)
                     <OwnerView handleShow={handleShow} handleClose={handleClose} show={show} DeleteClickHandler={DeleteClickHandler}parfumID={parfume._id}/> 
                     </>
                    )}
+{!isOwner && (<CommentSender onSubmit={onSubmit} values={values} ErrorHandleShow={ErrorHandleShow}onChange={onChange} />)}
+                     
+                                    {!isAuthenticated&&<p>Please log in to send Offers</p>}
+                  
+                                 
+                
+                  
+                 
                  
                     
+                  
                  
                 </div>
               </div>
             </div>
           </>
-        )}
+        )
       </>
     );
   ;
