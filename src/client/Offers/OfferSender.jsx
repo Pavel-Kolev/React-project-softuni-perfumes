@@ -18,7 +18,7 @@ const {isAuthenticated}=useContext(AuthContext)
           controlId="exampleForm.ControlTextarea1"
         >
           <Form.Label>
-            Delivery details-addres,contancts and other
+            Delivery details-address,contacts and other
             specifications
           </Form.Label>
           <Form.Control
