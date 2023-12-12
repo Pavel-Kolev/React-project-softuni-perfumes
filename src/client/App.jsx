@@ -8,9 +8,9 @@ import ProductSection from "../Parfume/ProductSection";
 import { Route, Routes} from "react-router-dom";
 import Register from "./User/Register";
 import Login from "./User/Login";
-import Cart from "./Cart";
+ 
 import Home from "./Home";
-import { ContextProvider } from "./CartContext";
+ 
 
 
 import Logout from "./User/Logout";
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <AuthProvider>
-      <ContextProvider>
+    
      
         <>
           <Navbar />
@@ -75,7 +75,7 @@ function App() {
           </Routes>
          
         </>
-      </ContextProvider>
+      
     </AuthProvider>
   );
 }
