@@ -14,6 +14,7 @@ const isValidImageUrl = validator.isURL(img, { protocols: ['http', 'https'], req
     if(!isValidImageUrl){
         errors.push("please provide a valid url")
     }
+    console.log(errors)
     return(errors)
     }
    
