@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ReactDOM } from "react";
  
 
-// import "../public/styles.css"
+import "../public/styles.css"
  import {Link, useLocation} from "react-router-dom"
  import Button from 'react-bootstrap/Button';
  
