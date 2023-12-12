@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState, useMemo } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { CartContext } from "../client/CartContext";
+
 import * as parfumeService from "../client/services/perfumeService";
 import withOwner from "../client/HOC/withOwner";
 import { Link } from "react-router-dom";
