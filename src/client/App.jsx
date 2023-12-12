@@ -2,7 +2,7 @@
 
 import "../public/styles.css";
 import Navbar from "./Navbar";
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 import ProductSection from "../Parfume/ProductSection";
 
 import { Route, Routes} from "react-router-dom";
