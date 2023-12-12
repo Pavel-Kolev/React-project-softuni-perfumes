@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ReactDOM } from "react";
-import { CartContext } from "../client/CartContext";
+ 
 
 import "../public/styles.css"
  import {Link, useLocation} from "react-router-dom"
@@ -11,15 +11,10 @@ import AuthContext from "../client/contexts/AuthContext";
 import withOwner from "../client/HOC/withOwner";
 
 function Itemcard({_id,brand,model,disc,price,img}){
-    const context= useContext(CartContext)
-    const {addOneToCart}= context.contextValue
  
-    const addToCartHandler=()=>{
-
-      addOneToCart(_id)
-       
-       }
  
+ 
+    
  
     return( <>
        
