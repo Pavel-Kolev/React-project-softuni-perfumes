@@ -2,11 +2,11 @@ import { useForm } from "../hooks/useForm"
 import { useState,useContext,useEffect } from "react"
 import AuthContext from "../contexts/AuthContext"
 import { Form,Button } from "react-bootstrap"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
  import * as parfumeService from "../services/perfumeService"
  import { Toast } from "react-bootstrap"
 function EditOffer(){
- 
+ const navigate=useNavigate()
   const [err, setErr] = useState([]);
   const {ParfumeId}=useParams()
   const [parfume, setParfume] = useState({ brand:"",
@@ -22,7 +22,7 @@ function EditOffer(){
         setErr(result.errorMessages);
       } else {
         setErr();
-        
+        navigate("/UserParfumes")
       }
  
     };
