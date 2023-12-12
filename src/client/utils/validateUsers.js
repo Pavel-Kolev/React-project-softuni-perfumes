@@ -1,20 +1,21 @@
+import validator from "validator";
 function validateRegCredentials(values){
 const {email,username,password,repeatPassword}=values
 let errors=[]
 const userRegex=/[^A-Za-z||0-9]/
-const emailRegex=/[A-Za-z0-9]{5,}[@][a-z]*[.][a-z]*/gm
-const emailValid=emailRegex.test(email)
+ 
+const emailValid=validator.isEmail(email)
 
 
 if(!emailValid)
 {
-errors.push( "Email Should include @ alphabet chars,numbers and exclude whitespaces" )
+errors.push( "Invalid Email" )
 }
 if(username.length<8|| userRegex.test(username)===true){
 errors.push( "The Username Should be atleast 8 char long and contain only letter or numbers" )
 }
  
-if(password.length<6){
+if(password.length<8){
     errors.push( "Password should be atleast 6 char long" )
 }
 if(password!==repeatPassword){

@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    minLength: [9, "Password is too short"],
+    minLength: [8, "Password is too short"],
     
     },
     email:{
