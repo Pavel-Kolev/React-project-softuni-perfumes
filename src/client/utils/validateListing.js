@@ -1,3 +1,4 @@
+import validator from "validator";
 function validateListing(values){
     const {brand,model,img,price,disc}=values
     let errors=[]
