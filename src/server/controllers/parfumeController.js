@@ -53,6 +53,7 @@ router.post("/create",isAuthenticated,async (req, res) => {
         disc,
         img,
         brand,
+        model,
         price: Number(price),
         owner: req.user,
       });
