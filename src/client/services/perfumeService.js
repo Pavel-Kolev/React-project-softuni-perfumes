@@ -33,7 +33,9 @@ return result
   }
   export const DeleteParfume=async(data)=>{
     const result=await request.remove(`${baseurl}/deleteOne/${data}`)
+    return result
   }
   export const UpdateParfume=async(data,parfumeid)=>{
     const result=await request.put(`${baseurl}/updateOne/${parfumeid}`,data)
+    return result
   }
